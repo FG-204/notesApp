@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+   
+{% block content %}
+        {% load crispy_forms_tags %}
+	<form method='POST'>
+            {% csrf_token %}
+		<div style="text-align: center">
+		<div style="display: inline-block">
+		<div class="form-group">
+            
+            {{form | crispy}}
+        <button name='Submit' value="submit">Submit</button>    
+	</div>
+    </div>
+    </form>
+{% endblock %}

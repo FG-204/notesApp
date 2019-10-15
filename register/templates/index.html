@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">LOGO</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse " id="navbarSupportedContent">
+		  <ol class="navbar-nav ml-auto">
+			<li class="nav-item active">
+			  <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="/signup">SignUp</a>
+            </li>
+			<li class="nav-item">
+              {% if request.user.is_authenticated %}
+              <a class="nav-link " href="/logout">{{request.user.username}}</a>
+              {% else %}
+			  <a class="nav-link " href="/login">LogIn</a>
+              {% endif %}
+            </li>
+		  </ol>
+		</div>
+      </nav>
+
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert {{ message.tags }}">
+      <strong{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message | safe}}</strong>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+
+      {% block content%}
+      {% endblock %}
+
+      {% block login%}
+      {% endblock %}
+</body>
+</html>

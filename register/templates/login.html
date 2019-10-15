@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert {{message.tags}}" role="alert">
+<strong{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message | safe}}</strong>
+</div>
+{% endfor %}
+{% endif %}
+
+{% block login %}
+        {% load crispy_forms_tags %}
+	<form method='POST' action="">
+            {% csrf_token %}
+		<div style="text-align: center">
+		<div style="display: inline-block">
+		<div class="form-group">
+            
+            {{form.username | as_crispy_field}}
+            {{form.password | as_crispy_field}}
+        <button name='Submit' value="submit">Submit</button>    
+	</div>
+    </div>
+    </form>
+{% endblock %}
