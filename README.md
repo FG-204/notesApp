@@ -1,0 +1,2 @@
+# notesApp
+A Django project
